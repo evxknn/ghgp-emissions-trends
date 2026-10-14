@@ -14,11 +14,11 @@ How did reported direct emissions change from 2010 to 2023, and how much of that
 
 ## Figures
 
-![Total reported direct emissions, 2010-2023](figures/emissions_trend_2010_2023.png)
+![Total reported direct emissions, 2010-2023](emissions_trend_2010_2023.png)
 
-![Change in emissions by sector, 2010 to 2023](figures/sector_change.png)
+![Change in emissions by sector, 2010 to 2023](sector_change.png)
 
-![Change in emissions by sector, excluding power plants](figures/sector_change_no_power.png)
+![Change in emissions by sector, excluding power plants](sector_change_no_power.png)
 
 Note: the third figure uses a much smaller scale than the second, so bar lengths should only be compared within each figure.
 
