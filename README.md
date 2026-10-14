@@ -14,9 +14,21 @@ How did reported direct emissions change from 2010 to 2023, and how much of that
 
 ## Figures
 
+### Figure 1: Total Reported Emissions by Year
+
+Total reported direct emissions for all reporting facilities, compared with the 4,690 facilities that reported in every year. Both series fall between 2010 and 2023 (about -26% and -23%), with a dip in 2020 and a partial rebound in 2021. The gap between the lines is emissions from facilities that did not report in every year. 
+
 ![Total reported direct emissions, 2010-2023](emissions_trend_2010_2023.png)
 
+### Figure 2: Change in emissions by sector
+
+Change in emissions from 2010 to 2023 for each sector, among facilities that reported in every year (each facility keeps its 2010 sector label). Power plants account for about -0.57 billion tons, roughly 94% of the net decline in this sample. Every other sector changed by less than 0.02 billion tons.
+
 ![Change in emissions by sector, 2010 to 2023](sector_change.png)
+
+### Figure 3: Change in emissions by sector, excluding power plants
+
+The same comparison without power plants, so the smaller changes are visible. The scale is much smaller than in Figure 2, so compare bars only within this figure. Some sectors rose slightly and others fell slightly. Refineries are understated because most are registered under multiple sectors. 
 
 ![Change in emissions by sector, excluding power plants](sector_change_no_power.png)
 
