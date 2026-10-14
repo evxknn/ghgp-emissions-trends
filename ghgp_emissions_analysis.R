@@ -235,6 +235,12 @@ sector_change_fixed <- sector_totals_fixed |>
   mutate(abs_change = end-start,
          pct_change = if_else(start == 0, NA_real_, abs_change/start*100))
 
+# Each sector's share of the net change in the balanced sample (negative contribution = sector rose, offsetting part of the decline)
+total_change <- sum(sector_change_fixed$abs_change)
+
+sector_change_fixed <- sector_change_fixed |>
+  mutate(contribution_pct = abs_change / total_change * 100)
+
 # Look at the numbers before interpreting plot
 print(sector_change_fixed, n = Inf)
 
