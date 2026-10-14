@@ -69,7 +69,6 @@ Developed with R 4.5.2.
 - About 15% of emissions come from facilities registered under multiple sectors, so sector totals for categories such as refineries (most of which are registered in combinations) are understated.
 - Sector results use each facility's 2010 label.
 - Changes in program coverage or calculation methods over time were not examined.
-- [Add the number of missing emissions values from the missing-emissions check in the script, if any.]
 - This is a descriptive analysis. It shows how reported emissions changed, not why.
 
 ## Repository contents
@@ -78,4 +77,4 @@ Developed with R 4.5.2.
 - `figures/`: saved plots
 - `data/raw/`: where the EPA spreadsheets go (not included)
 
-Author: [Your name]
+Author: Enoch
