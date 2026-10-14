@@ -8,7 +8,7 @@ How did reported direct emissions change from 2010 to 2023, and how much of that
 
 ## Key findings
 
-- Total reported direct emissions fell from about 3.20 to 2.38 billion metric tons CO2e (about -26%) across all reporting facilities, and from about 2.69 to 2.08 billion (about -23%) among the 4,690 facilities that reported in every year. The two samples agree on direction, so changes in which facilities report explain only part of the decline.
+- Total reported direct emissions fell from about 3.20 to 2.38 billion metric tons CO2e (about -26%) across all reporting facilities, and from about 2.69 to 2.08 billion (about -23%) among the 4,690 facilities that reported in every year. Because the two samples (full and balanced) show similar declines, changes in which facilities report do not appear to account for the overall pattern.  
 - Power plants account for about 94% of the net decline in the balanced sample (about -0.57 of -0.61 billion metric tons CO2e). Every other sector changed by less than 0.02 billion tons.
 - Both samples show a dip in 2020 and a partial rebound in 2021.
 
@@ -31,8 +31,6 @@ Change in emissions from 2010 to 2023 for each sector, among facilities that rep
 The same comparison without power plants, so the smaller changes are visible. The scale is much smaller than in Figure 2, so compare bars only within this figure. Some sectors rose slightly and others fell slightly. Refineries are understated because most are registered under multiple sectors. 
 
 ![Change in emissions by sector, excluding power plants](sector_change_no_power.png)
-
-Note: the third figure uses a much smaller scale than the second, so bar lengths should only be compared within each figure.
 
 ## Data
 
@@ -72,6 +70,8 @@ Developed with R 4.5.2.
 - This is a descriptive analysis. It shows how reported emissions changed, not why.
 
 ## Future Improvements
+ - **Entry and exit decomposition.** Split the change in total reported emissions between 2010 and 2023 into facilities that reported in both years, facilities that reported only in 2010, and facilities that reported only in 2023. Appearing in or disappearing from the data does not necessarily mean a facility opened or closed, so this would describe changes in the reporting population, not physical changes.
+ - **Facility-level changes** Calculate each balanced-sample facility's change between 2010 and 2023 to see whether the decline was widespread or driven by a small number of large emitters.
  - **Interactive map of facility locations.** Build a zoomable map (R `leaflet` package) with one dot per reporting facility for a chosen year. Dot area would scale with reported emissions, hovering would show the facility name and emissions, and clicking would show its sector and location. This would show where reported emissions are concentrated geographically.
  - **Emissions and facilities by state.** Add a chart of which states have the most reported emissions and the most facilities, to show whether the two rankings match.
  - **Change by state, with policy context.** Compare each state's emissions in 2010 and 2023 (using the balanced sample and all reporting facilities, since closures are excluded from the balanced sample) to see where the national decline occurred. For the states with the largest declines, document state and federal policies and other developments in the same years from cited sources to identify possible explanations. Because many factors affect emissions, this would show timing and context, but not cause.
@@ -79,7 +79,7 @@ Developed with R 4.5.2.
 ## Repository contents
 
 - `ghgp_emissions_analysis.R`: full analysis script
-- `figures/`: saved plots
+- `emissions_trend_2010_2023.png, sector_change.png, sector_change_no_power.png`: saved plots
 - `data/raw/`: where the EPA spreadsheets go (not included)
 
 Author: Enoch
