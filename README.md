@@ -74,7 +74,7 @@ Developed with R 4.5.2.
  - **Facility-level changes** Calculate each balanced-sample facility's change between 2010 and 2023 to see whether the decline was widespread or driven by a small number of large emitters.
  - **Interactive map of facility locations.** Build a zoomable map (R `leaflet` package) with one dot per reporting facility for a chosen year. Dot area would scale with reported emissions, hovering would show the facility name and emissions, and clicking would show its sector and location. This would show where reported emissions are concentrated geographically.
  - **Emissions and facilities by state.** Add a chart of which states have the most reported emissions and the most facilities, to show whether the two rankings match.
- - **Change by state, with policy context.** Compare each state's emissions in 2010 and 2023 (using the balanced sample and all reporting facilities, since closures are excluded from the balanced sample) to see where the national decline occurred. For the states with the largest declines, document state and federal policies and other developments in the same years from cited sources to identify possible explanations. Because many factors affect emissions, this would show timing and context, but not cause.
+ - **Change by state, with policy context.** Compare each state's emissions in 2010 and 2023 (using the balanced sample and all reporting facilities) to see where the national decline occurred. For the states with the largest declines, document state and federal policies and other developments in the same years to identify possible explanations. Because many factors affect emissions, this would show timing and context, but not cause.
 
 ## Repository contents
 
