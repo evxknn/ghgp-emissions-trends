@@ -1,6 +1,6 @@
 # EPA GHGRP Direct Point Emitters: Emissions Trends, 2010-2023 ----
 
-# Question: How did reported direct emissions change from 2010 to 2023, and how much of that change holds up when we only look at facilities reported in every year?
+# Question: How did reported direct emissions change from 2010 to 2023, and how much of that change holds up when we only look at facilities that reported in every year?
 
 # Data: EPA Greenhouse Gas Reporting Program (GHGRP), yearly data summary spreadsheets. Download the zip from EPA's GHGRP data page and put the files named ghgp_data_YYYY.xlsx in data/raw/ (see README).
 # Run from the project root (open the folder as an RStudio Project).
@@ -15,7 +15,7 @@ library(tidyverse)
 library(readxl)
 library(janitor)
 
-# Study period doesn't depend on files in folder, but our choice
+# The study period is our choice, not determined by the files in the folder
 study_start <- 2010
 study_end <- 2023
 study_years <- study_start:study_end
@@ -29,12 +29,12 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # 2. Find yearly files ----
 # Pattern = starts with "ghgp_data_", 4-digit year, ".xlsx"
-# (skips Excel's temporary ~$ lock files and the ""by_year" summary file)
+# (skips Excel's temporary ~$ lock files and the "by_year" summary file)
 files <- list.files(data_dir,
                     pattern = "^ghgp_data_[0-9]{4}\\.xlsx$",
                     full.names = TRUE)
 
-#Keep only files inside study period
+# Keep only files inside study period
 file_years <- parse_number(basename(files))
 files <- files[file_years >= study_start & file_years <= study_end]
 
@@ -144,13 +144,13 @@ ghgp_balanced_fixed <- ghgp_balanced |>
 stopifnot("The sector-label join changed the number of rows." =
   nrow(ghgp_balanced_fixed) == n_rows_before)
 
-# 6. Yearly totals (All facilities v.s. Balanced Set) ----
+# 6. Yearly totals (All facilities vs. Balanced Set) ----
 # mutate(dataset = ..."): labels each table so rows can be distinguished when stacked
 # bind_rows(): stacks labeled tables into one table
 # group_by(dataset, year): one group per dataset per year
 # total_billions: sum of emissions/1e9, in billions of metric tons CO2e
 # na.rm = TRUE: ignore missing values so one NA doesn't turn total into NA
-# n_facilities: facilities per year, to show whether the total change with number of reporters
+# n_facilities: facilities per year, to show changes with the number of reporters
 # .groups = "drop": removes grouping after summarising
 yearly_comparison <- bind_rows(
   ghgp_multi    |> mutate(dataset = "All facilities"),
@@ -188,15 +188,15 @@ decline_range <- range(-trend_summary$pct_change)
 #     (otherwise whole numbers print as "1", "2", "3")
 # theme(axis.text.x = ...): tilt year labels so they don't overlap
 # theme(plot.caption...): aligns caption to the left edge so it isn't cut off
-y_max <- ceiling(max(yearly_comparison$total_billions) *2) / 2
+y_max <- ceiling(max(yearly_comparison$total_billions) * 2) / 2
 
 emissions_plot <- ggplot(yearly_comparison, 
                          aes(x = year, y = total_billions, color = dataset)) +
   geom_line(linewidth = 1) +
   geom_point(size = 2) +
   scale_x_continuous(breaks = study_start:study_end) +
-  scale_y_continuous(limits = c(0, 3.5),
-                     breaks = seq(0, 3.5, by = 0.5),
+  scale_y_continuous(limits = c(0, y_max),
+                     breaks = seq(0, y_max, by = 0.5),
                      labels = scales::label_number(accuracy = 0.1)) +
   labs(title = paste0("Total Reported Direct Emissions, ", study_start, "-", study_end),
        subtitle = sprintf("Emissions fell about %.1f-%.1f%%, whether or not facility turnover is accounted for",
@@ -226,7 +226,7 @@ sector_totals_fixed <- ghgp_balanced_fixed |>
 
 # Change from first to last year. Percent change is undefined if sector started at zero, so those are set to NA.
 # abs_change: change in billions of tons
-# pct_change: change relative to the sta
+# pct_change: change relative to the start
 sector_change_fixed <- sector_totals_fixed |>
   group_by(sector_fixed) |>
   summarise(start = total_billions[year == study_start],
@@ -299,4 +299,4 @@ sector_no_power_plot <- plot_sector_change(
 
 sector_no_power_plot
 ggsave(file.path(output_dir, "sector_change_no_power.png"),
-       plot = sector_no_power_plot, width = 9, height = 5)
+       plot = sector_no_power_plot, width = 9, height = 5, dpi = 300)
